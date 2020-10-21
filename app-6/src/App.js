@@ -1,58 +1,54 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
+
 import Todo from "./Todo"
 
 class App extends Component {
-  constructor () {
-    super()
-  
+  constructor() {
+    super() 
     this.state = {
       list: [],
       input: ""
     }
-
-    this.handleAddTask = this.handleAddTask.bind(this)
+    this.handleAdd = this.handleAdd.bind(this)
   }
 
-  handleInput(val) {
-    this.setState ({
-      input: val
+
+  handleInputChange(val) {
+    this.setState({ input: val})
+  }
+
+  handleAdd() {
+    const {list, input} = this.state
+    this.setState({
+      list: [...list, input],
+      input: ""
     })
   }
 
-  handleAddTask() {
-    this.setState ({
-      list: [...this.state.list, this.state.input],
-      
-    })
-  }
+  render () {
 
-  render() {
-    let list = this.state.list.map((el, index) => {
-      return <Todo key={index} task={el} />;
-    });
+    const updatedList = this.state.list.map((e, i) => {
+      return <Todo key = {i} task = {e} />
+    })
 
     return (
-      <div className="App">
-        <h1>My to-do list:</h1>
-        <div>
+      <div className = "App">
+        <h1>My to-do-list</h1>
+        <input 
+          placeholder = "Enter new task"
+          value = {this.state.input}
+          onChange = {e => this.handleInputChange(e.target.value)}/>
+          <button onClick = {this.handleAdd} >Add</button>
 
-          <input
-            value={this.state.input}
-            placeholder="Enter new task"
-            onChange={e => this.handleInput(e.target.value)}
-          />
+          <br/>
 
-          <button onClick={this.handleAddTask}>Add</button>
-        </div>
-
-        {list}
+          {updatedList}
       </div>
-    );
+    )
   }
 
 }
-
 
 export default App;

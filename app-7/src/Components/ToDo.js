@@ -1,11 +1,9 @@
-import React from 'react';
+import React from "react"
 
-function ToDo(props) {
+const Todo = (props) => {
     return (
-      <div>
-        <p> {props.item}</p>
-      </div>
+        <p> {props.task} </p>
     )
 }
 
-export default ToDo
+export default Todo

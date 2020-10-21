@@ -3,34 +3,30 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
-  constructor () {
-    super()
-    
+  constructor() {
+    super ()
+
     this.state = {
-      unfilteredString: "",
-      foods: ["spaghetti", "ice cream", "sushi", "bologna", "cheese"]
+      foodList: ["waffles", "pancakes", "ice cream", "sushi"],
+      filteredFood: ""
     }
-  
   }
 
-  handleChange(filter) {
-    this.setState({unfilteredString: filter})
+  handleChange(value) {
+    this.setState( {filteredFood: value})
   }
 
-  render() {
-    let foodDisplay = this.state.foods
-      .filter((el) => {
-        return el.includes(this.state.unfilteredString)
-      })
-      .map((el, index) => {
-        return <h2 key = {index} >{el}</h2>
-      })
-      
-    return <div className = "App"> {foodDisplay}
-      <input onChange = {e => this.handleChange(e.target.value)} type = "text"/>
-    </div>
+  render () {
+    let foodsDisplay =this.state.foodList
+      .filter(e => e.includes(this.state.filteredFood))
+      .map((e, index) => <h2 key = {index}> {e} </h2>)
+    return (
+      < div className = "App">
+        <input onChange = { e => this.handleChange(e.target.value) } type="text" />
+        {foodsDisplay}
+      </div>
+    )
   }
-  
 }
 
 export default App;

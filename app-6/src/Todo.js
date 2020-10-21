@@ -1,9 +1,10 @@
-import React, {Component} from 'react';
+import React from "react"
 
-class ToDo extends Component {
-  render() {
-    return <p>{this.props.task}</p>;
-  }
+const Todo = (props) => {
+    return (
+        <p> {props.task} </p>
+    )
 }
 
-export default ToDo
+
+export default Todo
